@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TermSheet AI Validator</title>
+    <link rel="stylesheet" href="style.css">
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2>TermSheet AI</h2>
+            </div>
+            <div class="nav-menu">
+                <div class="nav-item active">
+                    <span class="nav-icon">📊</span>
+                    Dashboard
+                </div>
+                <div class="nav-item">
+                    <span class="nav-icon">📑</span>
+                    Term Sheets
+                </div>
+                <div class="nav-item">
+                    <span class="nav-icon">⚙️</span>
+                    Validation Rules
+                </div>
+                <div class="nav-item">
+                    <span class="nav-icon">📈</span>
+                    Analytics
+                </div>
+                <div class="nav-item">
+                    <span class="nav-icon">🔒</span>
+                    Compliance
+                </div>
+                <div class="nav-item">
+                    <span class="nav-icon">👥</span>
+                    User Management
+                </div>
+                <div class="nav-item">
+                    <span class="nav-icon">🛠️</span>
+                    Settings
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>TermSheet Validation</h1>
+                <div class="user-profile">
+                    <span>Welcome, Admin</span>
+                    <div class="avatar">AD</div>
+                </div>
+            </div>
+            
+            <!-- Stats Cards -->
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Processed Today</h3>
+                    <div class="value">142</div>
+                    <div class="trend up">↑ 12% from yesterday</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Validation Rate</h3>
+                    <div class="value">92.4%</div>
+                    <div class="trend up">↑ 3.2% from last week</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Avg. Processing Time</h3>
+                    <div class="value">47s</div>
+                    <div class="trend down">↓ 22% from last month</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Compliance Risk</h3>
+                    <div class="value">Medium</div>
+                    <div class="trend down">↓ 8% from last week</div>
+                </div>
+            </div>
+            
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <h2>Upload Term Sheets</h2>
+                <p>Drag and drop files here or click to browse</p>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📁</div>
+                    <p>Supported formats: PDF, DOCX, XLSX, JPG, PNG</p>
+                    <input type="file" id="fileInput" class="file-input" multiple accept=".pdf,.docx,.xlsx,.jpg,.png">
+                    <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">Select Files</button>
+                </div>
+                
+                <div class="file-list" id="fileList">
+                    <!-- Files will appear here after selection -->
+                </div>
+                
+                <button class="btn btn-primary" style="float: right;" id="processBtn">Process Term Sheets</button>
+                <div style="clear: both;"></div>
+            </div>
+            
+            <!-- Results Section -->
+            <div class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-header">
+                    <h2>Validation Results</h2>
+                    <div>
+                        <span class="badge" style="background: rgba(40, 167, 69, 0.1); color: var(--success); padding: 5px 10px; border-radius: 20px;">
+                            Document ID: TS-2023-11-28-00142
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="tabs">
+                    <div class="tab active">Validation Summary</div>
+                    <div class="tab">Extracted Data</div>
+                    <div class="tab">Full Report</div>
+                </div>
+                
+                <div class="validation-results">
+                    <div class="result-item error">
+                        <div class="result-icon">❌</div>
+                        <div class="result-content">
+                            <div class="result-title">Mismatch in Counterparty Details</div>
+                            <div class="result-desc">The counterparty name in section 3A doesn't match our records. Expected "Goldman Sachs International", found "Goldman Sachs Group".</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-item warning">
+                        <div class="result-icon">⚠️</div>
+                        <div class="result-content">
+                            <div class="result-title">Unusual Settlement Date</div>
+                            <div class="result-desc">The settlement date falls on a public holiday in the counterparty's jurisdiction. Verify if this is intentional.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-item success">
+                        <div class="result-icon">✓</div>
+                        <div class="result-content">
+                            <div class="result-title">ISIN Validation</div>
+                            <div class="result-desc">The ISIN code US0378331005 is valid and matches the instrument description.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-item error">
+                        <div class="result-icon">❌</div>
+                        <div class="result-content">
+                            <div class="result-title">Missing Regulatory Clause</div>
+                            <div class="result-desc">Required MiFID II pre-trade transparency waiver documentation is not attached.</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-item success">
+                        <div class="result-icon">✓</div>
+                        <div class="result-content">
+                            <div class="result-title">Price Validation</div>
+                            <div class="result-desc">The execution price of $182.45 is within the expected range based on market data.</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="compliance-risk">
+                    <h3>Compliance Risk Assessment</h3>
+                    <div class="risk-meter">
+                        <div class="risk-indicator" style="left: 72%;"></div>
+                    </div>
+                    <div class="risk-labels">
+                        <span>Low</span>
+                        <span>Medium</span>
+                        <span>High</span>
+                    </div>
+                    
+                    <div class="risk-details">
+                        <div class="risk-item">
+                            <span>Counterparty Verification</span>
+                            <span class="risk-severity severity-high">High Risk</span>
+                        </div>
+                        <div class="risk-item">
+                            <span>Regulatory Documentation</span>
+                            <span class="risk-severity severity-high">High Risk</span>
+                        </div>
+                        <div class="risk-item">
+                            <span>Settlement Timing</span>
+                            <span class="risk-severity severity-medium">Medium Risk</span>
+                        </div>
+                        <div class="risk-item">
+                            <span>Price Execution</span>
+                            <span class="risk-severity severity-low">Low Risk</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px; text-align: right;">
+                    <button class="btn btn-primary">Export Full Report</button>
+                    <button class="btn" style="margin-left: 10px; background: #f8f9fa;">Send for Review</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simple demo functionality
+        document.getElementById('processBtn').addEventListener('click', function() {
+            // In a real app, this would process the files and show results
+            document.getElementById('resultsSection').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('resultsSection').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+        
+        // Handle file selection display
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            
+            if (this.files.length > 0) {
+                for (let file of this.files) {
+                    const fileItem = document.createElement('div');
+                    fileItem.className = 'file-item';
+                    fileItem.innerHTML = `
+                        <span>${file.name}</span>
+                        <span>${(file.size / 1024).toFixed(1)} KB</span>
+                    `;
+                    fileList.appendChild(fileItem);
+                }
+            } else {
+                fileList.innerHTML = '<p>No files selected</p>';
+            }
+        });
+        
+        // Drag and drop functionality
+        const uploadArea = document.getElementById('uploadArea');
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = 'var(--secondary)';
+            uploadArea.style.backgroundColor = 'rgba(74, 111, 220, 0.05)';
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#ddd';
+            uploadArea.style.backgroundColor = 'transparent';
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ddd';
+            uploadArea.style.backgroundColor = 'transparent';
+            
+            document.getElementById('fileInput').files = e.dataTransfer.files;
+            
+            // Trigger change event to update file list
+            const event = new Event('change');
+            document.getElementById('fileInput').dispatchEvent(event);
+        });
+    </script>
+</body>
+</html>
