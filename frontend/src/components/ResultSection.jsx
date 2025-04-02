@@ -8,20 +8,31 @@ const ResultSection = () => {
     setSelectedTab(tab);
   };
 
+  // Data extracted from the provided termsheets
   const extractedData = [
-    { field: 'Counterparty', value: 'Goldman Sachs' },
-    { field: 'Principal Amount', value: '$5,000,000' },
-    { field: 'Interest Rate', value: '4.25%' },
-    { field: 'Term', value: '5 Years' },
-    { field: 'Maturity Date', value: '2028-11-30' },
+    { field: 'Issuer', value: 'TechInnovate Corp' },
+    { field: 'Security', value: '6.25% Fixed Rate Bond due 2028-06-30' },
+    { field: 'ISIN', value: 'INE012A07901' },
+    { field: 'Principal Amount', value: 'INR 50,000,000' },
+    { field: 'Currency', value: 'INR' },
+    { field: 'Coupon Rate', value: '6.25% p.a.' },
+    { field: 'Coupon Frequency', value: 'Annual' },
+    { field: 'Maturity Date', value: '2028-06-30' },
+    { field: 'Day Count', value: 'Actual/365' },
+    { field: 'Price', value: '101.50' },
+    { field: 'Settlement Date', value: '2025-04-03' },
+    { field: 'Accrued Interest', value: 'INR 431,506.85' },
+    { field: 'Total Consideration', value: 'INR 51,181,506.85' },
+    { field: 'Buyer', value: 'XYZ Securities' },
+    { field: 'Seller', value: 'Global Alpha Investments Ltd.' },
   ];
 
   return (
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">Validation Results</h2>
+        <h2 className="text-2xl font-bold text-gray-800">Termsheet Validation Results</h2>
         <div className="px-3 py-1 bg-gray-200 rounded-full text-sm font-medium text-gray-700">
-          Document ID: TS-2023-11-28-00142
+          Document ID: GAI/20250401/BOND/012
         </div>
       </div>
 
@@ -60,14 +71,14 @@ const ResultSection = () => {
 
       {selectedTab === 'summary' && (
         <div className="space-y-4">
-          <div className="flex bg-red-50 p-4 rounded-lg border-l-4 border-red-500">
+          <div className="flex bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
             <div className="mr-4 flex-shrink-0">
-              <AlertCircle className="h-6 w-6 text-red-500" />
+              <Check className="h-6 w-6 text-green-500" />
             </div>
             <div>
-              <h4 className="text-md font-medium text-red-800">Mismatch in Counterparty Details</h4>
-              <p className="mt-1 text-sm text-red-700">
-                The counterparty name in section 3A doesn't match our records. Expected "Goldman Sachs International", found "Goldman Sachs Group".
+              <h4 className="text-md font-medium text-green-800">Counterparty Details Verified</h4>
+              <p className="mt-1 text-sm text-green-700">
+                The buyer (XYZ Securities) and seller (Global Alpha Investments Ltd.) details match across both termsheets.
               </p>
             </div>
           </div>
@@ -77,9 +88,9 @@ const ResultSection = () => {
               <Check className="h-6 w-6 text-green-500" />
             </div>
             <div>
-              <h4 className="text-md font-medium text-green-800">Interest Rate Verified</h4>
+              <h4 className="text-md font-medium text-green-800">Financial Terms Match</h4>
               <p className="mt-1 text-sm text-green-700">
-                The interest rate of 4.25% is within acceptable parameters for this type of agreement.
+                All financial terms including price (101.50), principal amount (INR 50,000,000), and total consideration (INR 51,181,506.85) are consistent across documents.
               </p>
             </div>
           </div>
@@ -89,9 +100,9 @@ const ResultSection = () => {
               <AlertCircle className="h-6 w-6 text-yellow-500" />
             </div>
             <div>
-              <h4 className="text-md font-medium text-yellow-800">Review Recommended</h4>
+              <h4 className="text-md font-medium text-yellow-800">Regulatory Clauses Review Recommended</h4>
               <p className="mt-1 text-sm text-yellow-700">
-                Some clauses in section 5B use non-standard language. Manual review by legal team is recommended.
+                The regulatory clauses appear truncated in both documents. Please verify the complete Foreign Exchange Management Act (FEMA) cross-border transaction requirements.
               </p>
             </div>
           </div>
@@ -137,9 +148,25 @@ const ResultSection = () => {
             <h3 className="text-lg font-semibold text-gray-800">Full Report</h3>
           </div>
           <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-            <p className="text-gray-700">This section would contain the full detailed report...</p>
-            <p className="text-gray-700 mt-2">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            <h4 className="font-medium text-gray-800 mb-3">Corporate Bond Transaction Summary</h4>
+            <p className="text-gray-700 mb-2">
+              Transaction analysis of TechInnovate Corp 6.25% Fixed Rate Bond due June 30, 2028 (ISIN: INE012A07901) between Global Alpha Investments Ltd. (seller) and XYZ Securities (buyer).
+            </p>
+            
+            <h4 className="font-medium text-gray-800 mt-4 mb-2">Key Findings</h4>
+            <ul className="list-disc pl-5 text-gray-700 space-y-1">
+              <li>Trade date confirmed as April 1, 2025</li>
+              <li>Settlement scheduled for April 3, 2025 (T+2)</li>
+              <li>Price verified at 101.50 per 100 nominal</li>
+              <li>Accrued interest calculated correctly at INR 431,506.85</li>
+              <li>Total consideration of INR 51,181,506.85 is consistent</li>
+              <li>Internal references are correctly recorded by both parties</li>
+              <li>Both termsheets reference identical regulatory compliance requirements</li>
+            </ul>
+            
+            <h4 className="font-medium text-gray-800 mt-4 mb-2">Recommendations</h4>
+            <p className="text-gray-700">
+              Complete verification of FEMA compliance is recommended as the regulatory clause appears to be truncated in both documents. KYC and AML compliance has been verified for both parties.
             </p>
           </div>
         </div>
@@ -153,8 +180,8 @@ const ResultSection = () => {
             style={{ width: '100%' }}
           ></div>
           <div 
-            className="absolute top-0 h-6 w-6 bg-white border-2 border-yellow-500 rounded-full -mt-1.5 shadow-md"
-            style={{ left: '72%' }}
+            className="absolute top-0 h-6 w-6 bg-white border-2 border-green-500 rounded-full -mt-1.5 shadow-md"
+            style={{ left: '20%' }}
           ></div>
         </div>
         <div className="flex justify-between text-xs text-gray-600">
@@ -171,7 +198,7 @@ const ResultSection = () => {
         </button>
         <button className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none">
           <Send className="h-4 w-4 mr-2" />
-          Send for Review
+          Send for Approval
         </button>
       </div>
     </div>

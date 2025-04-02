@@ -129,9 +129,9 @@ const Analytics = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8 ">
         {/* Error Breakdown */}
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white rounded-lg shadow-md p-6 w">
           <h3 className="text-xl font-semibold mb-4 text-gray-800">Top Validation Errors</h3>
           <div className="overflow-x-auto">
             <table {...getTableProps()} className="min-w-full divide-y divide-gray-200">
